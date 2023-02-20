@@ -124,10 +124,11 @@ func ComparePasswords(hashedPwd string, plainPwd string) bool {
 	byteHash := []byte(hashedPwd)
 	bytePwd := []byte(plainPwd)
 	err := bcrypt.CompareHashAndPassword(byteHash, bytePwd)
-	if err != nil {
-		return false
-	}
-	return true
+	return err == nil
+	// if err != nil {
+	// 	return false
+	// }
+	// return true
 }
 
 // CheckIsFollow 检验已登录用户是否关注目标用户

@@ -27,8 +27,7 @@ func FeedGet(lastTime int64) ([]model.Video, error) {
 	}
 	strTime := fmt.Sprint(time.Unix(lastTime, 0).Format("2006-01-02 15:04:05"))
 	fmt.Println("查询的时间", strTime)
-	var VideoList []model.Video
-	VideoList = make([]model.Video, 0)
+	var VideoList []model.Video = make([]model.Video, 0)
 	err := dao.SqlSession.Table("videos").Where("created_at < ?", strTime).Order("created_at desc").Limit(videoNum).Find(&VideoList).Error
 	return VideoList, err
 }
@@ -74,12 +73,13 @@ func GetVideoList(userId uint) []model.Video {
 
 // CosUpload 上传至云端，返回url
 func CosUpload(fileName string, reader io.Reader) (string, error) {
-	u, _ := url.Parse(fmt.Sprintf(dao.COS_URL_FORMAT, dao.COS_BUCKET_NAME, dao.COS_APP_ID, dao.COS_REGION))
+	// fmt.Sprintf(dao.COS_URL_FORMAT, dao.COS_BUCKET_NAME, dao.COS_APP_ID, dao.COS_REGION)
+	u, _ := url.Parse("1")
 	b := &cos.BaseURL{BucketURL: u}
 	client := cos.NewClient(b, &http.Client{
 		Transport: &cos.AuthorizationTransport{
-			SecretID:  dao.COS_SECRET_ID,
-			SecretKey: dao.COS_SECRET_KEY,
+			// SecretID:  dao.COS_SECRET_ID,
+			// SecretKey: dao.COS_SECRET_KEY,
 		},
 	})
 	//path为本地的保存路径

@@ -1,0 +1,2 @@
+1.将model下的各种数据模型整合到对应服务下 即comment包含handler和model
+2.将common下的error改写成biz，参考toktik

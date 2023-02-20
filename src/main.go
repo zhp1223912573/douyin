@@ -3,10 +3,11 @@ package main
 import (
 	"douyin/src/dao"
 	"douyin/src/routes"
+	"fmt"
 )
 
 func main() {
-	//连接数据库
+	// //连接数据库
 	err := dao.InitMySql()
 	if err != nil {
 		panic(err)
@@ -14,13 +15,13 @@ func main() {
 	//程序退出关闭数据库连接
 	defer dao.Close()
 	//绑定模型
-	//r := gin.Default()
-	//dao.SqlSession.AutoMigrate(&model.User{})
-	//dao.SqlSession.AutoMigrate(&model.Video{})
-	//dao.SqlSession.AutoMigrate(&model.Comment{})
-	//dao.SqlSession.AutoMigrate(&model.Favorite{})
-	//dao.SqlSession.AutoMigrate(&model.Following{})
-	//dao.SqlSession.AutoMigrate(&model.Followers{})
+	// r := gin.Default()
+	// dao.SqlSession.AutoMigrate(&model.User{})
+	// dao.SqlSession.AutoMigrate(&model.Video{})
+	// dao.SqlSession.AutoMigrate(&model.Comment{})
+	// dao.SqlSession.AutoMigrate(&model.Favorite{})
+	// dao.SqlSession.AutoMigrate(&model.Following{})
+	// dao.SqlSession.AutoMigrate(&model.Followers{})
 	//注册路由
 	r := routes.InitRouter()
 	//启动端口为8080的项目
@@ -28,4 +29,6 @@ func main() {
 	if errRun != nil {
 		return
 	}
+
+	fmt.Println("hello,world!")
 }

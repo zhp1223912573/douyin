@@ -1,0 +1,40 @@
+https://bytedance.feishu.cn/docs/doccnKrCsU5Iac6eftnFBdsXTof?source_type=message&from=message#
+
+DROP TABLE IF EXISTS `tk_comment`;
+CREATE TABLE `tk_comment` (
+  `video_id` bigint DEFAULT 0 COMMENT '视频id',
+  `content` varchar(40) DEFAULT '' COMMENT '评论信息'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+DROP TABLE IF EXISTS `tk_like`;
+CREATE TABLE `tk_favorite` (
+  `user_id` bigint DEFAULT 0 COMMENT '用户名称',
+  `video_id` bigint DEFAULT 0 COMMENT '视频id',
+  `status` tinyint DEFAULT 0 comment '0为未点赞 1为点赞'
+)ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+DROP TABLE IF EXISTS `tk_relation`;
+CREATE TABLE `tk_relation` (
+  `follower_id` bigint DEFAULT '0' COMMENT '被关注者id',
+  `following_id` bigint DEFAULT '0' COMMENT '关注者id'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+DROP TABLE IF EXISTS `tk_user`;
+CREATE TABLE `tk_user` (
+  `name` varchar(40) DEFAULT '' COMMENT '用户名',
+  `password` char(40) DEFAULT '' comment '密码',
+  `follow_count` int DEFAULT '0' comment '关注总数',
+  `follower_count` int DEFAULT '0' comment '被关注总数',
+  `like_count` int DEFAULT '0' comment '获赞总数',
+  `total_like` int DEFAULT '0' comment '点赞总数'
+)ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+DROP TABLE IF EXISTS `tk_video`;
+CREATE TABLE `tk_video` (
+    `author_id` bigint(20) DEFAULT NULL comment '作者id',
+    `play_url` varchar(60) CHARACTER SET utf8 DEFAULT '' comment '播放地址' ,
+    `cover_url` varchar(60) CHARACTER SET utf8 DEFAULT '' comment '封面地址',
+    `like_count` int(11) DEFAULT '0' comment '点赞总数',
+    `comment_count` int(11) DEFAULT '0' comment '评论总数',
+    `title` text CHARACTER SET utf8 COMMENT '视频标题'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
